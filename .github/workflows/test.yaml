@@ -10,21 +10,23 @@ jobs:
       - uses: actions/checkout@v2
       - name: RUN ascript
         run: |
-          echo "dev"
+          echo "dev ${{ vars.DEV_VAR }} "
   QA:
     runs-on: ubuntu-latest
     environment: qa
+    needs: DEV
     steps:
       - uses: actions/checkout@v2
       - name: RUN ascript
         run: |
-          echo "qa"
+          echo "qa  ${{ vars.QA_VAR }}"
   PROD:
     runs-on: ubuntu-latest
     environment: prod
+    needs: QA
     steps:
       - uses: actions/checkout@v2
       - name: RUN ascript
         run: |
-          echo "prod"
+          echo "prod ${{ vars.PROD_VAR }}"
 
