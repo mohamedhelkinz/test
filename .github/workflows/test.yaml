@@ -1,15 +1,30 @@
 name: Manual Input and Process Workflow
 on:
-  workflow_dispatch:
-    inputs:
-      comments:
-        description: 'Comments for approval'
-        required: false
-        default: 'No comments provided'
+  workflow_dispatch
 
 jobs:
-  process-comments:
+  DEV:
     runs-on: ubuntu-latest
+    environment: dev
     steps:
-      - name: Check Comments
-        run: echo "Received comments: ${{ github.event.inputs.comments }}"
+      - uses: actions/checkout@v2
+      - name: RUN ascript
+        run: |
+          echo "dev"
+  QA:
+    runs-on: ubuntu-latest
+    environment: qa
+    steps:
+      - uses: actions/checkout@v2
+      - name: RUN ascript
+        run: |
+          echo "qa"
+  PROD:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - uses: actions/checkout@v2
+      - name: RUN ascript
+        run: |
+          echo "prod"
+
