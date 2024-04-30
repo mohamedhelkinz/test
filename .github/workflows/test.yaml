@@ -1,0 +1,26 @@
+name: Manual Approval Workflow
+on:
+  workflow_dispatch:
+    inputs:
+      comments:
+        description: 'Comments for approval'
+        required: true
+
+jobs:
+  manual-approval:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Manual Approval
+        if: github.event_name == 'workflow_dispatch'
+        run: echo "Manual approval triggered with comments: ${{ github.event.inputs.comments }}"
+      
+      - name: Retrieve Approval Information
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          # Make API request to retrieve approval information
+          # Extract comments message from the approval information
+          # Store the comments message in an environment variable
+
+      - name: Use Comments Message
+        if: github.event_name == 'workflow_dispatch'
+        run: echo "Comments message: $COMMENTS_MESSAGE"
